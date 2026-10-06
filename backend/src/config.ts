@@ -1,0 +1,3 @@
+import 'dotenv/config';
+export const config={port:Number(process.env.PORT||5000),mongoUri:process.env.MONGO_URI||'mongodb://127.0.0.1:27017/codeshield',jwtSecret:process.env.JWT_SECRET||'',jwtExpiresIn:process.env.JWT_EXPIRES_IN||'8h',bcryptRounds:Number(process.env.BCRYPT_ROUNDS||12),origins:[process.env.CLIENT_STUDENT_URL||'http://localhost:5173',process.env.CLIENT_TEACHER_URL||'http://localhost:5174'],runnerUrl:process.env.CODE_RUNNER_URL,runnerToken:process.env.CODE_RUNNER_TOKEN,aiUrl:process.env.AI_API_URL,aiKey:process.env.AI_API_KEY,aiModel:process.env.AI_MODEL};
+if(process.env.NODE_ENV==='production'&&config.jwtSecret.length<32) throw new Error('JWT_SECRET must be at least 32 characters in production');

@@ -1,0 +1,1 @@
+{"name":"codeshield","private":true,"workspaces":["backend","student-frontend","teacher-frontend"],"scripts":{"dev:backend":"npm --workspace backend run dev","dev:student":"npm --workspace student-frontend run dev","dev:teacher":"npm --workspace teacher-frontend run dev","build":"npm run build --workspaces --if-present","test":"npm run test --workspaces --if-present"}}

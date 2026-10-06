@@ -1,0 +1,23 @@
+services:
+  codeshield-runner:
+    build: .
+    entrypoint: ["python3", "-u", "/app/runner.py"]
+    container_name: codeshield-runner
+    restart: unless-stopped
+    environment:
+      RUNNER_TOKEN: ${CODE_RUNNER_TOKEN:?Set CODE_RUNNER_TOKEN in this directory's .env file}
+      PORT: 8000
+      PYTHON_IMAGE: python:3.12-alpine
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=8m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 64
